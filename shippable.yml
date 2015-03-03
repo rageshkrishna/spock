@@ -31,7 +31,7 @@ before_script:
 matrix:
   exclude:
     - jdk: openjdk7
-      env: FOO=bar2
+      env: VARIANT=2.3
 
 script:
   - ./gradlew shippableCiBuild -Dvariant=$VARIANT
