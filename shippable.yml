@@ -7,9 +7,11 @@ jdk:
   - openjdk7
 
 env:
-  - VARIANT=2.0
-  - VARIANT=2.3
-
+  matrix:
+    - VARIANT=2.0
+    - VARIANT=2.3
+  global:
+    - secure: oiS4RxdLNRmSJRYvg7Yyubk09b//T+v6AAMgtfs9YlMCoyDmVufaYRQjUUU6VvCjmVIBXtNwgbMe/IYpapwVgaQyqK5mP2yG/KCoTeSxDPXFf/72qMk/8m6S/Y0E02qtZcxVjFXWA3pezldiTBnR3gAlXc7RuvVCfCh9f7MtMI8pv8fdg6XgwpkWhQvlIIu0ni2JX1EzTY1PTjqFdslWqIAxGQsbuxCoeQKKa9PnPRtvyyTwTB3tHtgAVp54R7NYnVvMqJ7juY2djzGCdBdUQo9tfG1306K8b0t7J+7DQXGCMBY7N0ApfnwJhO9sNB21FvRWEqGZBYwpuqz1eRq+SA==
 
 before_script:
   - if [[ $SHIPPABLE_JDK_VERSION == "openjdk6" ]] ; then export JAVA_HOME="/usr/lib/jvm/java-6-openjdk-amd64"; export PATH="$PATH:/usr/lib/jvm/java-6-openjdk-amd64/bin"; export java_path="/usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java"; fi
@@ -22,7 +24,7 @@ before_script:
 matrix:
   exclude:
     - jdk: openjdk7
-      env: VARIANT=2.3
+      env: FOO=bar
 
 script:
   - ./gradlew shippableCiBuild -Dvariant=$VARIANT
